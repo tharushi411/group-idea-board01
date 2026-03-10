@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Idea Board</title>
+    <style>
+        /* සරල හැඩගැන්වීම් (Basic Styling) */
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
+        .container { background: white; padding: 20px; border-radius: 8px; max-width: 600px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h2 { color: #333; }
+        .input-group { display: flex; gap: 10px; margin-bottom: 20px; }
+        select, input, button { padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        button { background-color: #007bff; color: white; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        ul { list-style: none; padding: 0; }
+        li { background: #eee; margin: 5px 0; padding: 10px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Group Idea Board</h2>
+    
+    <div class="input-group">
+        <select id="userName">
+            <option value="">Select your name...</option>
+            <option value="Nimal">Nimal</option>
+            <option value="Sara">Sara</option>
+            <option value="Alex">Alex</option>
+        </select>
+
+        <input type="text" id="userIdea" placeholder="Enter your idea here...">
+        
+        <button onclick="addIdea()">Add Idea</button>
+    </div>
+
+    <ul id="ideaList">
+        <li>Build a study planner - suggested by Nimal</li>
+        <li>Start a podcast - suggested by Sara</li>
+    </ul>
+</div>
+
+<script>
+    function addIdea() {
+        let name = document.getElementById("userName").value;
+        let idea = document.getElementById("userIdea").value;
+        let list = document.getElementById("ideaList");
+
+        if (name === "" || idea === "") {
+            alert("කරුණාකර නම සහ අදහස යන දෙකම ඇතුළත් කරන්න!");
+            return;
+        }
+
+        // අලුත් අදහසක් ලැයිස්තුවට එකතු කිරීම [cite: 154, 155]
+        let li = document.createElement("li");
+        li.textContent = `${idea} - suggested by ${name}`;
+        list.appendChild(li);
+
+        // Input එක හිස් කිරීම
+        document.getElementById("userIdea").value = "";
+    }
+</script>
+
+</body>
+</html>s
