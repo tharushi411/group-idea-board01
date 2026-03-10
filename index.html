@@ -1,27 +1,32 @@
 <!DOCTYPE html>
-<html lang="si">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Group Idea Board</title>
     <style>
-        /* සරල හැඩගැන්වීම් (Basic Styling) */
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
-        .container { background: white; padding: 20px; border-radius: 8px; max-width: 600px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        h2 { color: #333; }
-        .input-group { display: flex; gap: 10px; margin-bottom: 20px; }
-        select, input, button { padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
-        button { background-color: #007bff; color: white; cursor: pointer; }
-        button:hover { background-color: #0056b3; }
-        ul { list-style: none; padding: 0; }
-        li { background: #eee; margin: 5px 0; padding: 10px; border-radius: 4px; }
+        /* ලස්සන පෙනුමක් ලබා දීමට (Part 5) */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f0f2f5; }
+        header { background-color: #007bff; color: white; padding: 20px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .container { max-width: 600px; margin: 30px auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .stats { font-weight: bold; color: #555; margin-bottom: 15px; background: #e9ecef; padding: 10px; border-radius: 5px; text-align: center; }
+        .input-group { display: flex; flex-direction: column; gap: 10px; }
+        select, input, button { padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; }
+        button { background-color: #28a745; color: white; border: none; cursor: pointer; transition: 0.3s; }
+        button:hover { background-color: #218838; }
+        .reset-btn { background-color: #dc3545; margin-top: 5px; }
+        ul { list-style: none; padding: 0; margin-top: 20px; }
+        li { background: #f8f9fa; margin: 8px 0; padding: 12px; border-left: 5px solid #007bff; border-radius: 4px; }
+        footer { text-align: center; padding: 20px; color: #777; font-size: 14px; margin-top: 50px; }
     </style>
 </head>
 <body>
 
+<header>
+    <h1>💡 Group Idea Board</h1> </header>
+
 <div class="container">
-    <h2>Group Idea Board</h2>
-    
+    <div class="stats">Total Ideas: <span id="counter">0</span></div>
+
     <div class="input-group">
         <select id="userName">
             <option value="">Select your name...</option>
@@ -30,37 +35,46 @@
             <option value="Alex">Alex</option>
         </select>
 
-        <input type="text" id="userIdea" placeholder="Enter your idea here...">
+        <input type="text" id="userIdea" placeholder="Enter your brilliant idea...">
         
         <button onclick="addIdea()">Add Idea</button>
-    </div>
+        <button class="reset-btn" onclick="resetForm()">Reset Fields</button> </div>
 
-    <ul id="ideaList">
-        <li>Build a study planner - suggested by Nimal</li>
-        <li>Start a podcast - suggested by Sara</li>
-    </ul>
+    <ul id="ideaList"></ul>
 </div>
 
+<footer>
+    <p>Built by Group 01 | Vibe Coding Day 03</p> </footer>
+
 <script>
+    let count = 0;
+
     function addIdea() {
         let name = document.getElementById("userName").value;
         let idea = document.getElementById("userIdea").value;
         let list = document.getElementById("ideaList");
+        let counterDisplay = document.getElementById("counter");
 
         if (name === "" || idea === "") {
-            alert("කරුණාකර නම සහ අදහස යන දෙකම ඇතුළත් කරන්න!");
+            alert("Please fill all fields!");
             return;
         }
 
-        // අලුත් අදහසක් ලැයිස්තුවට එකතු කිරීම [cite: 154, 155]
         let li = document.createElement("li");
-        li.textContent = `${idea} - suggested by ${name}`;
+        li.innerHTML = `<strong>${idea}</strong> <br> <small>suggested by ${name}</small>`;
         list.appendChild(li);
 
-        // Input එක හිස් කිරීම
+        count++; // ගණනය කිරීම (Part 6)
+        counterDisplay.innerText = count;
+
+        document.getElementById("userIdea").value = "";
+    }
+
+    function resetForm() {
+        document.getElementById("userName").value = "";
         document.getElementById("userIdea").value = "";
     }
 </script>
 
 </body>
-</html>s
+</html>S
